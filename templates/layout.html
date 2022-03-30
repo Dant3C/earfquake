@@ -22,6 +22,22 @@
         
     </head>
     <body>
+         <!--nav bar-->
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">My Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li {% if active_page == "home" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                        <a class="nav-link" href="/">Refresh</a>
+                    </li>
+                </ul>
+            </div>  
+        </nav>
+        <!--nav bar end-->
+        {% block content %}{% endblock %}
         <h1>About the Earthquake Data</h1>
         <p>The data used is from the CORGIS Dataset Project. This dataset contains information about earthquakes from 7/27/2016 to 8/25/2016
         <br> Some of the information contained in this datasets includes information about the significance of the earthquake. This value is determined on a number of different factors 
