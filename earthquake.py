@@ -3,20 +3,18 @@ from flask import Flask, url_for, render_template, request, json
 with open('earthquakes.json') as json_earthquakes:
     earthquakes = json.load(json_earthquakes)
 
-    
+
 app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  Otherwise, it is the name of the file (ex. webapp)
 @app.route("/")
 def render_main():
     return render_template('home.html')
-
 @app.route("/page1")
 def render_page1():
     return render_template('page1.html')
 
 def get_earthquake_amount():
-    # returns abount of earthquakes per countrie or us state
+    # Sorts data amount of earthquakes in each state
     earthquake_state = {}
-    CA_earthquake = 0
     state = ""
     for x in earthquakes:
         if x['location']['name'] in earthquake_state:
@@ -31,17 +29,27 @@ def get_earthquake_amount():
             earthquake_state[state] = 1
             
     # return earthquake_state
-    quake_keys = earthquake_state.keys()
-    top_state = ""
-    a = 0
-    top_five = earthquake_state['Burma']
-    for x in earthquake_state:
-        if earthquake_state[x] > top_five:
-            top_five = earthquake_state[x]
-            top_state = quake_keys[a]
-            a += 1
-    return top_state
+    # quake_keys = earthquake_state.keys()
+    # returns the top 5 states 
+    top_state = {'state1','state2','state3','state4','state5'}
+    top_five = [0]
+    i = 0
+    for top in top_state:
+        for x in earthquake_state:
+            if earthquake_state[x] in top_five[]:
+                i += 0
+            else:
+                if earthquake_state[x] > top_five[i]:
+                    # top_five = earthquake_state[x]
+                    top_five.insert(i, earthquake_state[x])
+                    # top_state = quake_keys[x]
+                    # i += 1
+        i += 1
+        
+    return top_five
+    # returns the top 5 states formated for the graph
 print(get_earthquake_amount())
+
 
 
 if __name__=="__main__":
