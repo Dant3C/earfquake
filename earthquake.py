@@ -1,4 +1,4 @@
-from flask import Flask, url_for, render_template, request, json
+from flask import Flask, url_for, render_template, request, json, Markup
 
 with open('earthquakes.json') as json_earthquakes:
     earthquakes = json.load(json_earthquakes)
@@ -31,12 +31,12 @@ def get_earthquake_amount():
     # return earthquake_state
     # quake_keys = earthquake_state.keys()
     # returns the top 5 states 
-    top_state = {'state1','state2','state3','state4','state5'}
-    top_five = [0]
+    top_state = ['state1','state2','state3','state4','state5']
+    top_five = [0] # int amount of earthquakes in the top states
     i = 0
     for top in top_state:
         for x in earthquake_state:
-            if earthquake_state[x] in top_five[]:
+            if earthquake_state[x] in top_five:
                 i += 0
             else:
                 if earthquake_state[x] > top_five[i]:
@@ -45,8 +45,16 @@ def get_earthquake_amount():
                     # top_state = quake_keys[x]
                     # i += 1
         i += 1
-        
-    return top_five
+    graph_points = ""
+    i = 0
+    for top in top_state:
+        # { y: 300878, label: "Venezuela" },
+        placehold = str(top_five[i])
+        graph_points = graph_points + Markup('{ y: ' + placehold + ', label: "' + top_state[i] + '" }, ')
+        i += 1
+    graph_points = graph_points[:-2]
+    print(graph_points)
+    return graph_points
     # returns the top 5 states formated for the graph
 print(get_earthquake_amount())
 
