@@ -24,14 +24,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		legendMarkerColor: "grey",
 		legendText: "",
 		dataPoints: [      
-			{ y: 300878, label: "Venezuela" },
-			{ y: 266455,  label: "Saudi" },
-			{ y: 169709,  label: "Canada" },
-			{ y: 158400,  label: "Iran" },
-			{ y: 142503,  label: "Iraq" },
-			{ y: 101500, label: "Kuwait" },
-			{ y: 97800,  label: "UAE" },
-			{ y: 80000,  label: "Russia" }
+			{{ graph_quake }}
 		]
 	}]
 });
@@ -39,6 +32,6 @@ chart.render();
 
 }
 </script>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<div id="chartContainer" style="height: 1000px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 {% endblock %}

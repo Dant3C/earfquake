@@ -10,9 +10,7 @@ def render_main():
     return render_template('home.html')
 @app.route("/page1")
 def render_page1():
-    return render_template('page1.html')
 
-def get_earthquake_amount():
     # Sorts data amount of earthquakes in each state
     earthquake_state = {}
     state = ""
@@ -28,10 +26,10 @@ def get_earthquake_amount():
             state = x['location']['name']
             earthquake_state[state] = 1
             
+    print(earthquake_state)
     # return earthquake_state
-    # quake_keys = earthquake_state.keys()
     # returns the top 5 states 
-    top_state = ['state1','state2','state3','state4','state5']
+    top_state = ['']
     top_five = [0] # int amount of earthquakes in the top states
     i = 0
     for top in top_state:
@@ -40,23 +38,25 @@ def get_earthquake_amount():
                 i += 0
             else:
                 if earthquake_state[x] > top_five[i]:
-                    # top_five = earthquake_state[x]
                     top_five.insert(i, earthquake_state[x])
-                    # top_state = quake_keys[x]
-                    # i += 1
+                    print(x)
+                    top_state.insert(i, x)
         i += 1
     graph_points = ""
     i = 0
-    for top in top_state:
+    for top in "state000":
         # { y: 300878, label: "Venezuela" },
         placehold = str(top_five[i])
         graph_points = graph_points + Markup('{ y: ' + placehold + ', label: "' + top_state[i] + '" }, ')
         i += 1
     graph_points = graph_points[:-2]
     print(graph_points)
-    return graph_points
     # returns the top 5 states formated for the graph
-print(get_earthquake_amount())
+    return render_template('page1.html', graph_quake = graph_points)
+
+@app.route("/page2")
+def render_page2():
+    return render_template('page2.html')
 
 
 
