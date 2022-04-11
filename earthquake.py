@@ -33,7 +33,7 @@ def render_page1():
     top_five = [0] # int amount of earthquakes in the top states
     i = 0
     for top in top_state:
-        for x in earthquake_state:
+        for x in earthquake_state: # x is name of state str
             if earthquake_state[x] in top_five:
                 i += 0
             else:
@@ -54,6 +54,11 @@ def render_page1():
     # returns the top 5 states formated for the graph
     return render_template('page1.html', graph_quake = graph_points)
 
+def get_dates():
+    quake_dates = {}
+    for x in earthquakes:
+        if x['time']['day']
+    print("idk what im doing")
 @app.route("/page2")
 def render_page2():
     return render_template('page2.html')
