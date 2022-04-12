@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% set active_page = "home" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<p>you makemy earfquake number 2
+    {{ quake_facts }}
+</p>
+<form action="/action_page.php">
+  <input list="browsers" name="browser">
+  <datalist id="browsers">
+    {{ stateOptions }}
+    <!-- <option value="Opera"> -->
+    <!-- <option value="Safari"> -->
+  </datalist>
+  <input type="submit">
+</form>
+
+{% endblock %}

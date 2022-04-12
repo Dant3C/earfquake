@@ -46,6 +46,11 @@
                     <a class="nav-link" href="/page2">page2</a>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                <li {% if active_page == "home" %} class="nav-item active"{% else %}class="nav-item"{% endif %}>
+                    <a class="nav-link" href="/page3">page3</a>
+                </li>
+            </ul>
         </div>  
     </nav>
     <!--nav bar end-->

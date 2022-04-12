@@ -54,16 +54,51 @@ def render_page1():
     # returns the top 5 states formated for the graph
     return render_template('page1.html', graph_quake = graph_points)
 
-def get_dates():
-    quake_dates = {}
-    for x in earthquakes:
-        if x['time']['day']
-    print("idk what im doing")
+# def get_dates():
+    # quake_dates = {}
+    # for x in earthquakes:
+        # if x['time']['day']:
+            # print("idk what im doing")
 @app.route("/page2")
 def render_page2():
     return render_template('page2.html')
+def list_of_states():
+    state_list = []
+    state_current = ""
+    for x in earthquakes:
+        if x['location']['name'] in state_list:
+            pass
+            # if california in earthquake_state add 1 to california
+            # else add california to the dictornary and add one 
+        else:
+            state_list.append(x['location']['name'])
+            
+    # liststates = list_of_states()
+    form_options = ""
+    # <option value="Internet Explorer">
+    for opp in state_list:
+        form_options = form_options + Markup('<option value="' + opp + '">')
+    return form_options
+
+def state_facts(s_list):# s_list is the output of list_of_states() which is a list of states
+    selected = request.args('browser')
+    s_facts = []
+    
+    # for quakes in earthquakes:
+        # if quakes['location']['name'] == selected
+            # s_facts.append(quakes['location'])
+        # finish this code 
+        # add all the data in location time and impact to the list 
+        # for every earthquake 
+        # mabye change the list into a dictionary
+        # perchance a nested dictionary
+@app.route("/page3")
+def render_page3():
+    
+    return render_template('page3.html', stateOptions = list_of_states(), quake_facts = "facts")
 
 
+print(list_of_states())
 
 if __name__=="__main__":
     app.run(debug=True)
