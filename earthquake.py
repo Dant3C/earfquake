@@ -79,14 +79,14 @@ def list_of_states():
     for opp in state_list:
         form_options = form_options + Markup('<option value="' + opp + '">')
     return form_options
-
-def state_facts(s_list):# s_list is the output of list_of_states() which is a list of states
-    selected = request.args('browser')
+@app.route("/state_facts")
+def render_state_facts():# s_list is the output of list_of_states() which is a list of states
+    selected = request.args['browser']
     s_facts = []
     
-    # for quakes in earthquakes:
-        # if quakes['location']['name'] == selected
-            # s_facts.append(quakes['location'])
+    for quakes in earthquakes:
+        if quakes['location']['name'] == selected:
+            s_facts.append(quakes['location'])
         # finish this code 
         # add all the data in location time and impact to the list 
         # for every earthquake 
@@ -98,7 +98,6 @@ def render_page3():
     return render_template('page3.html', stateOptions = list_of_states(), quake_facts = "facts")
 
 
-print(list_of_states())
 
 if __name__=="__main__":
     app.run(debug=True)
