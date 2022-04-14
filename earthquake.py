@@ -80,18 +80,21 @@ def list_of_states():
         form_options = form_options + Markup('<option value="' + opp + '">')
     return form_options
 @app.route("/state_facts")
-def render_state_facts():# s_list is the output of list_of_states() which is a list of states
+def render_state_facts():
     selected = request.args['browser']
-    s_facts = []
-    
+    s_facts = {}
+    i = 1
     for quakes in earthquakes:
+        print(quakes)
         if quakes['location']['name'] == selected:
-            s_facts.append(quakes['location'])
+            s_facts['earthquake ' + str(i)] = [quakes['location']['full'], quakes['time']['full'], quakes['impact']['magnitude']]
+            i += 1
         # finish this code 
         # add all the data in location time and impact to the list 
         # for every earthquake 
         # mabye change the list into a dictionary
         # perchance a nested dictionary
+    return render_template('state_facts.html',html_facts = s_facts)
 @app.route("/page3")
 def render_page3():
     
