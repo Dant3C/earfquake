@@ -21,14 +21,13 @@ def render_page1():
             i += 1
             earthquake_state[state] = i# finish looping through and adding missing spots
             # if california in earthquake_state add 1 to california
-            # else add california to the dictornary and add one 
+            # else add california to the dictornary and add one
         else:
             state = x['location']['name']
             earthquake_state[state] = 1
-            
-    print(earthquake_state)
+
     # return earthquake_state
-    # returns the top 5 states 
+    # returns the top 5 states
     top_state = ['']
     top_five = [0] # int amount of earthquakes in the top states
     i = 0
@@ -39,7 +38,6 @@ def render_page1():
             else:
                 if earthquake_state[x] > top_five[i]:
                     top_five.insert(i, earthquake_state[x])
-                    print(x)
                     top_state.insert(i, x)
         i += 1
     graph_points = ""
@@ -50,15 +48,10 @@ def render_page1():
         graph_points = graph_points + Markup('{ y: ' + placehold + ', label: "' + top_state[i] + '" }, ')
         i += 1
     graph_points = graph_points[:-2]
-    print(graph_points)
     # returns the top 5 states formated for the graph
     return render_template('page1.html', graph_quake = graph_points)
 
-# def get_dates():
-    # quake_dates = {}
-    # for x in earthquakes:
-        # if x['time']['day']:
-            # print("idk what im doing")
+
 @app.route("/page2")
 def render_page2():
     return render_template('page2.html')
@@ -69,10 +62,10 @@ def list_of_states():
         if x['location']['name'] in state_list:
             pass
             # if california in earthquake_state add 1 to california
-            # else add california to the dictornary and add one 
+            # else add california to the dictornary and add one
         else:
             state_list.append(x['location']['name'])
-            
+
     # liststates = list_of_states()
     form_options = ""
     # <option value="Internet Explorer">
@@ -82,22 +75,23 @@ def list_of_states():
 @app.route("/state_facts")
 def render_state_facts():
     selected = request.args['browser']
-    s_facts = {}
+    s_facts = {} #dictornary
     i = 1
     for quakes in earthquakes:
-        print(quakes)
         if quakes['location']['name'] == selected:
-            s_facts['earthquake ' + str(i)] = [quakes['location']['full'], quakes['time']['full'], quakes['impact']['magnitude']]
+            s_facts['Earthquake ' + str(i)] = [quakes['location']['full'], quakes['time']['full'], quakes['impact']['magnitude']]
             i += 1
-        # finish this code 
-        # add all the data in location time and impact to the list 
-        # for every earthquake 
-        # mabye change the list into a dictionary
-        # perchance a nested dictionary
-    return render_template('state_facts.html',html_facts = s_facts)
+    s_facts_string = ''
+    i = 1
+    print(s_facts)
+    for s in s_facts:
+        s_facts_string = s_facts_string + s + '; ' + s_facts[s][0] + ' ' + s_facts[s][1]+ ' Magnitude: ' + str(s_facts[s][2]) + Markup('<br>')
+        print(s_facts[s][0])
+        # format this idk how im gonna do this
+    return render_template('state_facts.html',html_facts = s_facts_string, state = selected)
 @app.route("/page3")
 def render_page3():
-    
+
     return render_template('page3.html', stateOptions = list_of_states(), quake_facts = "facts")
 
 

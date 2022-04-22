@@ -5,7 +5,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<p>you makemy earfquake</p>
 <script>
 window.onload = function () {
 
@@ -13,17 +12,17 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "countries with most earthquakes"
+		text: "Countries (or U.S. states) with the most earthquakes"
 	},
 	axisY: {
 		title: "earthquakes"
 	},
-	data: [{        
-		type: "column",  
-		showInLegend: true, 
+	data: [{
+		type: "column",
+		showInLegend: true,
 		legendMarkerColor: "grey",
 		legendText: "",
-		dataPoints: [      
+		dataPoints: [
 			{{ graph_quake }}
 		]
 	}]
